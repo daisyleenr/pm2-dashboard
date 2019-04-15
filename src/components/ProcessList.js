@@ -6,12 +6,10 @@ class ProcessList extends Component {
     const { processes } = this.props;
     const processList = processes.map(proc => (
       <ProcessItem
-        key={proc.pm2_env.unique_id}
-        url={proc.pm2_web_url}
-        pid={proc.pid}
+        key={proc.key}
+        hostname={proc.hostname}
         name={proc.name}
-        status={proc.pm2_env.status}
-        process={proc}
+        status={proc.status}
       />
     ));
     return processList;

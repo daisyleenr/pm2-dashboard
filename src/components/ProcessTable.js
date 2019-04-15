@@ -4,8 +4,6 @@ import axios from "axios";
 import React, { Component } from "react";
 import ProcessList from "./ProcessList";
 
-const PM2_WEB_URLS = require("../pm2_web_urls.json");
-
 const Tr = styled.div`
   display: flex;
 `;
@@ -21,18 +19,13 @@ class ProcessTable extends Component {
 
   setProcesses = async () => {
     try {
-      const processes = [];
-
-      for (const url of PM2_WEB_URLS) {
-        const res = await axios.get(url);
-        res.data.processes.forEach(proc => {
-          proc.pm2_web_url = url;
-          processes.push(Object.assign({}, proc));
-        });
-      }
+      console.log(process.env.REACT_APP_API_ADDR + "/pm2_web");
+      const { data } = await axios.get(
+        process.env.REACT_APP_API_ADDR + "/pm2_web"
+      );
 
       this.setState({
-        processes: processes
+        processes: data
       });
     } catch (e) {
       console.log(e);
@@ -54,10 +47,9 @@ class ProcessTable extends Component {
     return (
       <div>
         <Tr>
-          <Td>Host</Td>
-          <Td>Pid</Td>
-          <Td>Name</Td>
-          <Td>Status</Td>
+          <Td>hostname</Td>
+          <Td>name</Td>
+          <Td>status</Td>
         </Tr>
         <ProcessList processes={processes} />
       </div>

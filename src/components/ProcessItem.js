@@ -12,12 +12,11 @@ const Td = styled.div`
 
 class ProcessItem extends Component {
   render() {
-    const { url, pid, name, status } = this.props;
+    const { hostname, name, status } = this.props;
 
     return (
       <Tr>
-        <Td>{url}</Td>
-        <Td>{pid}</Td>
+        <Td>{hostname}</Td>
         <Td>{name}</Td>
         <Td>{status}</Td>
       </Tr>
