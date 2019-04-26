@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledProcessItem = styled.div`
   background-color: ${({ status }) =>
-    status === "online" ? "#badc58" : "#ff7979"};
+    status === "online" ? "#2ecc71" : "#ff7979"};
   padding: 10px;
 `;
 
@@ -13,6 +13,7 @@ const ProcessTitle = styled.h4`
   padding: 0;
   color: white;
   text-align: center;
+  font-size: 20px;
 `;
 
 const ArgItem = styled.span`

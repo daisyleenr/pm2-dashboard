@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledProcessList = styled.div`
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
 `;
 
 class ProcessList extends Component {
