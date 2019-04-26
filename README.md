@@ -72,7 +72,7 @@
 
 ### Run application
 
-    $ yarn start
+    $ yarn start --env=dev
 
 ### Deploy
 
