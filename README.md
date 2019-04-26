@@ -9,9 +9,9 @@
 
 ### Requirements
 
-- [pyenv](#https://github.com/pyenv/pyenv-installer)
-- [python 3](#https://github.com/pyenv/pyenv#simple-python-version-management-pyenv)
-- [pipenv](#https://pipenv.readthedocs.io/en/latest/install/#pragmatic-installation-of-pipenv)
+- [pyenv](https://github.com/pyenv/pyenv-installer)
+- [python 3](https://github.com/pyenv/pyenv#simple-python-version-management-pyenv)
+- [pipenv](https://pipenv.readthedocs.io/en/latest/install/#pragmatic-installation-of-pipenv)
 
 ### Clone git
 
@@ -57,10 +57,10 @@
 
 ### Requirements
 
-- [nvm](#https://github.com/nvm-sh/nvm#install--update-script)
-- [Node.js LTS](#https://github.com/nvm-sh/nvm#long-term-support)
-- [yarn](#https://yarnpkg.com/lang/en/docs/install/#debian-stable)
-- [pm2](#http://pm2.keymetrics.io/docs/usage/quick-start/#installation)
+- [nvm](https://github.com/nvm-sh/nvm#install--update-script)
+- [Node.js LTS](https://github.com/nvm-sh/nvm#long-term-support)
+- [yarn](https://yarnpkg.com/lang/en/docs/install/#debian-stable)
+- [pm2](http://pm2.keymetrics.io/docs/usage/quick-start/#installation)
 
 ### Clone git
 
