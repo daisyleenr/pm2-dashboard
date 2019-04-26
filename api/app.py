@@ -31,12 +31,16 @@ def pm2_web():
         if res.status_code != 200:
             continue
 
-        for proc in res.json()['processes']:
+        for proc in res.json()["processes"]:
+            if proc["name"] == "pm2-http-interface":
+              continue
+
             processes.append({
-                "key": proc['pm2_env']['unique_id'],
+                "key": proc["pm2_env"]["unique_id"],
                 "hostname": host["hostname"],
                 "name": proc["name"],
-                "status": proc['pm2_env']['status']
+                "status": proc["pm2_env"]["status"],
+                "args": proc["pm2_env"].get("args", [])
             })
 
     return create_response(json.dumps(processes))
