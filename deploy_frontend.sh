@@ -1,6 +1,5 @@
 #!/bin/bash
 cd front
-git reset --hard HEAD
 git pull --all
 yarn install
 npm run build:production
