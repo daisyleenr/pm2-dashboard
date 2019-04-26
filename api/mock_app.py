@@ -28,10 +28,10 @@ def pm2_web():
         idx = str(i)
         processes.append({
             "key": "key_" + idx,
-            "hostname": "hostname_" + idx,
-            "name": "name_" + idx,
-            "status": "status_" + idx,
-            "args": ["arg_" + idx + "_1", "arg_" + idx + "_2", "arg_" + idx + "_3", "arg_" + idx + "_4"]
+            "hostname": "data_" + idx,
+            "name": "data_logging",
+            "status": "online" if i % 2 == 0 else "stopped",
+            "args": [ "-n", "ens9", "coinrail", "OMG/BTC" ]
         })
 
     return create_response(json.dumps(processes))
