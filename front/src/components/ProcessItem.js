@@ -1,22 +1,7 @@
 import React, { Component } from "react";
-
 import styled from "styled-components";
 
-const StyledProcessItem = styled.div`
-  background-color: ${({ status }) =>
-    status === "online" ? "#2ecc71" : "#ff7979"};
-  padding: 10px;
-`;
-
-const ProcessTitle = styled.h4`
-  margin: 0;
-  padding: 0;
-  color: white;
-  text-align: center;
-  font-size: 20px;
-`;
-
-const ArgItem = styled.span`
+const Arg = styled.span`
   border-radius: 5px;
   padding: 0 4px;
   background-color: #dff9fb;
@@ -26,24 +11,28 @@ const ArgItem = styled.span`
   font-weight: bold;
 `;
 
-const ArgList = styled.div`
-  display: flex;
-  justify-content: center;
+const Status = styled.div`
+  color: ${({ status }) => (status === "online" ? "#2ecc71" : "#ff7979")};
+  font-weight: bold;
 `;
 
 class ProcessItem extends Component {
-  render() {
-    const { hostname, name, status, args } = this.props.process;
+  ref = React.createRef();
 
-    const argList = args.map((arg, i) => <ArgItem key={i}>{arg}</ArgItem>);
+  render() {
+    const { idx, process } = this.props;
+    const { hostname, name, status, args } = process;
+
+    const argList = args.map((arg, i) => <Arg key={i}>{arg}</Arg>);
 
     return (
-      <StyledProcessItem status={status}>
-        <ProcessTitle>
-          {hostname}:{name}
-        </ProcessTitle>
-        <ArgList>{argList}</ArgList>
-      </StyledProcessItem>
+      <>
+        <div ref={this.ref}>{idx}</div>
+        <Status status={status}>{status}</Status>
+        <div>{hostname}</div>
+        <div>{name}</div>
+        <div>{argList}</div>
+      </>
     );
   }
 }

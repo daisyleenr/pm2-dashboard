@@ -1,6 +1,14 @@
+import axios from "axios";
+
 import React, { Component } from "react";
 import ProcessList from "./components/ProcessList";
-import axios from "axios";
+import ProcessStatusChart from "./components/ProcessStatusChart";
+import styled from "styled-components";
+
+const Header = styled.header`
+  text-align: center;
+  color: #525252;
+`;
 
 class App extends Component {
   state = {
@@ -8,15 +16,25 @@ class App extends Component {
     count: 0
   };
 
+  processList = React.createRef();
+
+  handleOnClick = e => {
+    this.processList.current.handleScrollTo(e.target.dataset.idx);
+  };
+
   render() {
     const { processes, count } = this.state;
     return (
       <>
-        <header>
+        <Header>
           <h1>PM2 Monitoring ({count})</h1>
-        </header>
+        </Header>
         <section>
-          <ProcessList processes={processes} />
+          <ProcessStatusChart
+            processes={processes}
+            onClick={this.handleOnClick}
+          />
+          <ProcessList processes={processes} ref={this.processList} />
         </section>
       </>
     );
@@ -24,7 +42,6 @@ class App extends Component {
 
   setProcesses = async () => {
     try {
-      console.log(process.env.REACT_APP_API_ADDR + "/pm2_web");
       const { data } = await axios.get(
         process.env.REACT_APP_API_ADDR + "/pm2_web"
       );

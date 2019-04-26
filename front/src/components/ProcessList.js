@@ -2,19 +2,50 @@ import React, { Component } from "react";
 import ProcessItem from "./ProcessItem";
 import styled from "styled-components";
 
-const StyledProcessList = styled.div`
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 50px 100px 1fr 1fr 1fr;
+  width: 60vw;
+  justify-content: center;
+`;
+
+const Tr = styled.div`
+  border-bottom: 1px solid black;
+`;
 class ProcessList extends Component {
+  ProcessItems = [];
+  handleScrollTo = key => {
+    this.ProcessItems[key].ref.current.scrollIntoView();
+  };
+
   render() {
     const { processes } = this.props;
-    const processList = processes.map(process => (
-      <ProcessItem key={process.key} process={process} />
+    const processList = processes.map((process, i) => (
+      <ProcessItem
+        key={process.key}
+        id={process.key}
+        idx={i}
+        process={process}
+        ref={ref => (this.ProcessItems[i] = ref)}
+      />
     ));
-    return <StyledProcessList>{processList}</StyledProcessList>;
+    return (
+      <Div>
+        <Grid>
+          <Tr>No.</Tr>
+          <Tr>status</Tr>
+          <Tr>hostname</Tr>
+          <Tr>app name</Tr>
+          <Tr>args</Tr>
+          {processList}
+        </Grid>
+      </Div>
+    );
   }
 }
 
