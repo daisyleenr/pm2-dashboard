@@ -1,0 +1,6 @@
+PM2_WEB_HOSTS = [
+    {
+        "hostname": "localhost",
+        "url": "https://127.0.0.1:9615"
+    }
+]
