@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import ProcessItem from "./ProcessItem";
+import styled from "styled-components";
+
+const StyledProcessList = styled.div`
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+`;
 
 class ProcessList extends Component {
   render() {
     const { processes } = this.props;
-    const processList = processes.map(proc => (
-      <ProcessItem
-        key={proc.key}
-        hostname={proc.hostname}
-        name={proc.name}
-        status={proc.status}
-      />
+    const processList = processes.map(process => (
+      <ProcessItem key={process.key} process={process} />
     ));
-    return processList;
+    return <StyledProcessList>{processList}</StyledProcessList>;
   }
 }
 
