@@ -3,11 +3,13 @@ import { Switch, Route } from "react-router-dom";
 import MainMenu from "./components/main/MainMenu";
 import ProcessPage from "./pages/ProcessPage";
 import SamplePage from "./pages/SamplePage";
+import { ResetCSS } from "./lib/styles/reset";
 
 class App extends Component {
   render() {
     return (
       <>
+        <ResetCSS />
         <MainMenu />
         <Switch>
           <Route path="/" exact={true} component={ProcessPage} />
