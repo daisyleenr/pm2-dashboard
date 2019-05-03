@@ -4,12 +4,15 @@ import MainMenu from "./components/main/MainMenu";
 import ProcessPage from "./pages/ProcessPage";
 import SamplePage from "./pages/SamplePage";
 import { ResetCSS } from "./lib/styles/reset";
+import { BaseCSS } from "./lib/styles/base";
 
 class App extends Component {
   render() {
     return (
       <>
         <ResetCSS />
+        <BaseCSS />
+
         <MainMenu />
         <Switch>
           <Route path="/" exact={true} component={ProcessPage} />
