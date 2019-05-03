@@ -1,67 +1,26 @@
-import axios from "axios";
-
 import React, { Component } from "react";
-import ProcessList from "./components/ProcessList";
-import ProcessStatusChart from "./components/ProcessStatusChart";
-import styled from "styled-components";
-
-const Header = styled.header`
-  text-align: center;
-  color: #525252;
-`;
+import ProcessMonitoring from "./components/processMonitoring/ProcessMonitoring";
+import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
-  state = {
-    processes: [],
-    count: 0
-  };
-
-  processList = React.createRef();
-
-  handleOnClick = e => {
-    this.processList.current.handleScrollTo(e.target.dataset.idx);
-  };
-
   render() {
-    const { processes, count } = this.state;
     return (
       <>
-        <Header>
-          <h1>PM2 Monitoring ({count})</h1>
-        </Header>
-        <section>
-          <ProcessStatusChart
-            processes={processes}
-            onClick={this.handleOnClick}
+        <Switch>
+          <Route path="/" exact={true} component={ProcessMonitoring} />
+          <Route path="/monitoring/process" component={ProcessMonitoring} />
+          <Route path="/monitoring/process2" component={ProcessMonitoring} />
+          <Route
+            render={({ location }) => (
+              <div>
+                <h2>이 페이지는 존재하지 않습니다:</h2>
+                <p>{location.pathname}</p>
+              </div>
+            )}
           />
-          <ProcessList processes={processes} ref={this.processList} />
-        </section>
+        </Switch>
       </>
     );
-  }
-
-  setProcesses = async () => {
-    try {
-      const { data } = await axios.get(
-        process.env.REACT_APP_API_ADDR + "/pm2_web"
-      );
-
-      this.setState({
-        processes: data,
-        count: data.length
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  componentDidMount() {
-    this.setProcesses();
-    this.interval = setInterval(() => this.setProcesses(), 10000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 }
 
