@@ -1,8 +1,8 @@
 import axios from "axios";
 
 import React, { Component } from "react";
-import ProcessList from "./ProcessList";
-import ProcessStatusChart from "./ProcessStatusChart";
+import ProcessList from "../components/process/ProcessList";
+import ProcessStatusChart from "../components/process/ProcessStatusChart";
 import styled from "styled-components";
 
 const Header = styled.header`
