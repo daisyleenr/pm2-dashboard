@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import ProcessMonitoring from "./components/processMonitoring/ProcessMonitoring";
 import { Switch, Route } from "react-router-dom";
+import MainMenu from "./components/main/MainMenu";
+import ProcessPage from "./pages/ProcessPage";
+import SamplePage from "./pages/SamplePage";
 
 class App extends Component {
   render() {
     return (
       <>
+        <MainMenu />
         <Switch>
-          <Route path="/" exact={true} component={ProcessMonitoring} />
-          <Route path="/monitoring/process" component={ProcessMonitoring} />
-          <Route path="/monitoring/process2" component={ProcessMonitoring} />
+          <Route path="/" exact={true} component={ProcessPage} />
+          <Route path="/monitoring/process" component={ProcessPage} />
+          <Route path="/sample" component={SamplePage} />
           <Route
             render={({ location }) => (
               <div>
