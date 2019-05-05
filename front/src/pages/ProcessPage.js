@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import React, { Component } from "react";
-import ProcessList from "../components/process/ProcessList";
+import ProcessTable from "../components/process/ProcessTable";
 import ProcessStatusChart from "../components/process/ProcessStatusChart";
 import styled from "styled-components";
 
@@ -16,10 +16,10 @@ class ProcessMonitoring extends Component {
     count: 0
   };
 
-  processList = React.createRef();
+  processTable = React.createRef();
 
   handleOnClick = e => {
-    this.processList.current.handleScrollTo(e.target.dataset.idx);
+    this.processTable.current.handleScrollTo(e.target.dataset.idx);
   };
 
   render() {
@@ -34,7 +34,7 @@ class ProcessMonitoring extends Component {
             processes={processes}
             onClick={this.handleOnClick}
           />
-          <ProcessList processes={processes} ref={this.processList} />
+          <ProcessTable processes={processes} innerRef={this.processTable} />
         </section>
       </>
     );
