@@ -28,6 +28,7 @@ def pm2_web():
         idx = str(i)
         processes.append({
             "key": "key_" + idx,
+            "pm_id": idx,
             "hostname": "data_" + idx,
             "name": "data_logging",
             "status": "online" if i % 2 == 0 else "stopped",

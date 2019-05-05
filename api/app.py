@@ -37,6 +37,7 @@ def pm2_web():
 
             processes.append({
                 "key": proc["pm2_env"]["unique_id"],
+                "pm_id": proc["pm_id"],
                 "hostname": host["hostname"],
                 "name": proc["name"],
                 "status": proc["pm2_env"]["status"],
