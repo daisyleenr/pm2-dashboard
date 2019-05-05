@@ -16,6 +16,10 @@ const Item = styled.div`
   vertical-align: center;
 
   cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Tooltip = styled.div`

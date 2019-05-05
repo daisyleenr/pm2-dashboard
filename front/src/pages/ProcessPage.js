@@ -8,6 +8,7 @@ import styled from "styled-components";
 const Header = styled.header`
   text-align: center;
   color: #525252;
+  margin-top: 50px;
 `;
 
 class ProcessMonitoring extends Component {
