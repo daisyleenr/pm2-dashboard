@@ -32,8 +32,13 @@ def pm2_web():
             "hostname": "data_" + idx,
             "name": "data_logging",
             "status": "online" if i % 2 == 0 else "stopped",
-            "args": [ "-n", "ens9", "coinrail", "OMG/BTC" ]
+            "args": [ "-n", "ens9", "coinrail", "OMG/BTC" ],
+            "uptime": "1557325803679",
+            "restart": "3",
+            "cpu": "5",
+            "memory": "28663808"
         })
+
 
     return create_response(json.dumps(processes))
 

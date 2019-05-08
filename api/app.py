@@ -41,7 +41,11 @@ def pm2_web():
                 "hostname": host["hostname"],
                 "name": proc["name"],
                 "status": proc["pm2_env"]["status"],
-                "args": proc["pm2_env"].get("args", [])
+                "args": proc["pm2_env"].get("args", []),
+                "uptime": proc["pm2_env"]["pm_uptime"],
+                "restart": proc["pm2_env"]["restart_time"],
+                "cpu": proc["monit"]["cpu"],
+                "memory": proc["monit"]["memory"]
             })
 
     return create_response(json.dumps(processes))
