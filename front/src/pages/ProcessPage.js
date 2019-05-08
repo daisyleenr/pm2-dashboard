@@ -11,6 +11,10 @@ const Header = styled.header`
   margin-top: 50px;
 `;
 
+const Main = styled.main`
+  margin: 0 50px;
+`;
+
 class ProcessMonitoring extends Component {
   state = {
     processes: [],
@@ -30,13 +34,13 @@ class ProcessMonitoring extends Component {
         <Header>
           <h1>PM2 Monitoring ({count})</h1>
         </Header>
-        <section>
+        <Main>
           <ProcessStatusChart
             processes={processes}
             onClick={this.handleOnClick}
           />
           <ProcessTable processes={processes} innerRef={this.processTable} />
-        </section>
+        </Main>
       </>
     );
   }

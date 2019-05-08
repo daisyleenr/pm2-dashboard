@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Item = styled.div`
   position: relative;
   background-color: ${({ status }) =>
-    status === "online" ? "#2ecc71" : "#ff7979"};
+    status === "online" ? "#4CAF50" : "#FF5722"};
 
   width: 20px;
   height: 20px;

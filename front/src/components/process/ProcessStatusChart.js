@@ -7,8 +7,7 @@ const StyledProcessStatusChart = styled.div`
   grid-gap: 7px;
   place-content: center;
   grid-template-columns: repeat(auto-fit, 20px);
-
-  margin: 20px;
+  margin: 50px 100px;
 `;
 
 class ProcessStatusChart extends Component {

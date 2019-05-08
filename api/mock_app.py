@@ -24,7 +24,7 @@ def hello():
 @app.route("/pm2_web")
 def pm2_web():
     processes = []
-    for i in range(0, 20):
+    for i in range(0, 100):
         idx = str(i)
         processes.append({
             "key": "key_" + idx,
