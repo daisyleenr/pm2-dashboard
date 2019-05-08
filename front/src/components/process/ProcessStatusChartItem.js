@@ -3,8 +3,20 @@ import styled from "styled-components";
 
 const Item = styled.div`
   position: relative;
-  background-color: ${({ status }) =>
-    status === "online" ? "#4CAF50" : "#FF5722"};
+  background-color: ${({ status, uptime }) => {
+    if (status !== "online") {
+      return "#FF5722";
+    }
+
+    const currentTime = new Date().getTime();
+    const offset = currentTime - uptime;
+
+    if (offset < 86400000) {
+      return "#FF9800";
+    }
+
+    return "#4CAF50";
+  }};
 
   width: 20px;
   height: 20px;
@@ -69,7 +81,7 @@ class ProcessStatusChartItem extends Component {
   render() {
     const { isHover } = this.state;
     const { idx, process, onClick } = this.props;
-    const { hostname, name, status, args } = process;
+    const { hostname, name, status, args, uptime } = process;
 
     const argList = args.map((arg, i) => <Arg key={i}>{arg}</Arg>);
 
@@ -77,6 +89,7 @@ class ProcessStatusChartItem extends Component {
       <>
         <Item
           status={status}
+          uptime={uptime}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           onClick={onClick}
