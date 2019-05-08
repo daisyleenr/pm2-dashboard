@@ -47,7 +47,7 @@ const Status = styled.div`
 
 const Uptime = styled.div`
   color: ${({ uptime }) => {
-    const halfDay = 43200000; // 43200000 = 6 hour
+    const halfDay = 43200000; // 43200000 = 12 hour
     const currentTime = new Date().getTime();
     const offset = currentTime - uptime;
     return offset < halfDay ? "#FF9800" : "rgba(0, 0, 0, 0.87)";

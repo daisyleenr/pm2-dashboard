@@ -8,7 +8,7 @@ const Item = styled.div`
       return "#FF5722";
     }
 
-    const halfDay = 43200000; // 43200000 = 6 hour
+    const halfDay = 43200000; // 43200000 = 12 hour
     const currentTime = new Date().getTime();
     const offset = currentTime - uptime;
 
