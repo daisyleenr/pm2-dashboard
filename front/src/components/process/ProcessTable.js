@@ -47,9 +47,10 @@ const Status = styled.div`
 
 const Uptime = styled.div`
   color: ${({ uptime }) => {
+    const halfDay = 43200000; // 43200000 = 6 hour
     const currentTime = new Date().getTime();
     const offset = currentTime - uptime;
-    return offset < 86400000 ? "#FF9800" : "rgba(0, 0, 0, 0.87)";
+    return offset < halfDay ? "#FF9800" : "rgba(0, 0, 0, 0.87)";
   }};
 `;
 
@@ -99,7 +100,6 @@ class ProcessTable extends Component {
   };
 
   render() {
-    console.log(moment.utc());
     const { processes } = this.props;
 
     const createRows = processes.map((process, i) => {
