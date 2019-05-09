@@ -2,6 +2,8 @@ import json
 # import pdb
 # pdb.set_trace()
 
+from datetime import datetime, timedelta
+from random import randint
 import requests
 from flask import Flask, Response
 from config import PM2_WEB_HOSTS
@@ -24,16 +26,21 @@ def hello():
 @app.route("/pm2_web")
 def pm2_web():
     processes = []
-    for i in range(0, 100):
+    for i in range(0, 200):
+        rand = randint(1, 15)
         idx = str(i)
+        uptime = datetime.now() - timedelta(hours=randint(4, 50))
+        status = "online" if randint(1, 50) < 50 else "stopped"
+
+ 
         processes.append({
             "key": "key_" + idx,
             "pm_id": idx,
             "hostname": "data_" + idx,
             "name": "data_logging",
-            "status": "online" if i % 2 == 0 else "stopped",
+            "status": status,
             "args": [ "-n", "ens9", "coinrail", "OMG/BTC" ],
-            "uptime": "1557325803679",
+            "uptime": datetime.timestamp(uptime) * 1000,
             "restart": "3",
             "cpu": "5",
             "memory": "28663808"
