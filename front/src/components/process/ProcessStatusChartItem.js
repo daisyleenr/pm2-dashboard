@@ -19,12 +19,13 @@ const Item = styled.div`
     return "#4CAF50";
   }};
 
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+  padding: 2px;
 
   text-align: center;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   vertical-align: center;
 

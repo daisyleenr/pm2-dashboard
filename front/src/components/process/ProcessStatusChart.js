@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 const StyledProcessStatusChart = styled.div`
   display: grid;
-  grid-gap: 7px;
+  grid-gap: 10px;
   place-content: center;
-  grid-template-columns: repeat(auto-fit, 20px);
+  grid-template-columns: repeat(auto-fit, 25px);
   margin: 50px 100px;
 
   @media (max-width: 1000px) {
