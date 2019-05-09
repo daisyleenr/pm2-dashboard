@@ -11,6 +11,10 @@ const Header = styled.header`
   margin-top: 50px;
 `;
 
+const Counter = styled.span`
+  color: #ababab;
+`;
+
 const Main = styled.main`
   margin: 0 50px;
 `;
@@ -18,7 +22,8 @@ const Main = styled.main`
 class ProcessMonitoring extends Component {
   state = {
     processes: [],
-    count: 0
+    count: 0,
+    time: null
   };
 
   processTable = React.createRef();
@@ -28,11 +33,13 @@ class ProcessMonitoring extends Component {
   };
 
   render() {
-    const { processes, count } = this.state;
+    const { processes, count, time } = this.state;
     return (
       <>
         <Header>
-          <h1>PM2 Monitoring ({count})</h1>
+          <h1>
+            PM2 Monitoring ({count}) <Counter>{time}</Counter>
+          </h1>
         </Header>
         <Main>
           <ProcessStatusChart
@@ -60,9 +67,30 @@ class ProcessMonitoring extends Component {
     }
   };
 
+  counter = {
+    interval: null,
+    time: null
+  };
+
+  resetCounter = () => {
+    clearInterval(this.counter.interval);
+    this.counter.time = 10;
+    this.counter.interval = setInterval(() => {
+      this.counter.time -= 1;
+      this.setState({
+        time: this.counter.time
+      });
+    }, 1000);
+  };
+
   componentDidMount() {
     this.setProcesses();
-    this.interval = setInterval(() => this.setProcesses(), 10000);
+    this.resetCounter();
+
+    this.interval = setInterval(() => {
+      this.resetCounter();
+      this.setProcesses();
+    }, 10000);
   }
 
   componentWillUnmount() {
