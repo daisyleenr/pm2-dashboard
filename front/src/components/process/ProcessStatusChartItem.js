@@ -1,6 +1,26 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+const isWarning = uptime => {
+  const halfDay = 43200000; // 43200000 = 12 hour
+  const currentTime = new Date().getTime();
+  const offset = currentTime - uptime;
+
+  return offset < halfDay;
+};
+
+const getStatus = (status, uptime) => {
+  if (status !== "online") {
+    return status;
+  }
+
+  if (isWarning(uptime)) {
+    return "warning";
+  }
+
+  return status;
+};
+
 const Item = styled.div`
   position: relative;
   background-color: ${({ status, uptime }) => {
@@ -8,24 +28,19 @@ const Item = styled.div`
       return "#FF5722";
     }
 
-    const halfDay = 43200000; // 43200000 = 12 hour
-    const currentTime = new Date().getTime();
-    const offset = currentTime - uptime;
-
-    if (offset < halfDay) {
+    if (isWarning(uptime)) {
       return "#FF9800";
     }
 
     return "#4CAF50";
   }};
 
-  width: 25px;
-  height: 25px;
-  padding: 2px;
+  width: 22px;
+  height: 22px;
 
   text-align: center;
   color: white;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
   vertical-align: center;
 
@@ -40,8 +55,8 @@ const Tooltip = styled.div`
   position: absolute;
   width: max-content;
   padding: 7px 7px;
-  margin-top: -65px;
-  margin-left: -10px;
+  top: -40px;
+  left: -15px;
   z-index: 999;
 
   text-align: center;
@@ -83,7 +98,7 @@ class ProcessStatusChartItem extends Component {
   render() {
     const { isHover } = this.state;
     const { idx, process, onClick } = this.props;
-    const { hostname, name, status, args, uptime } = process;
+    const { hostname, name, status, args, uptime, pm_id } = process;
 
     const argList = args.map((arg, i) => <Arg key={i}>{arg}</Arg>);
 
@@ -97,10 +112,10 @@ class ProcessStatusChartItem extends Component {
           onClick={onClick}
           data-idx={idx}
         >
-          {idx}
+          {getStatus(status, uptime) !== "online" && idx}
           {isHover && (
             <Tooltip>
-              {hostname}: {name} {argList}
+              {hostname}: {name} ({pm_id}) {argList}
             </Tooltip>
           )}
         </Item>
