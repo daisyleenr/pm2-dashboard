@@ -1,11 +1,11 @@
 # Index
 
-- [Deploy ficcy-dashboard api](#Deploy-ficcy-dashboard-api)
-- [Deploy ficcy-dashboard frontend](#Deploy-ficcy-dashboard-frontend)
+- [Deploy api](#Deploy-api)
+- [Deploy frontend](#Deploy-frontend)
 
 ---
 
-# Deploy ficcy-dashboard-api
+# Deploy api
 
 ### Requirements
 
@@ -22,11 +22,13 @@
     $ pipenv install
 
 ### Install packages without pipenv
+pipenv를 사용하지 않는 경우에는 requirements를 생성한 후 pip install을 합니다
 
     $ pipenv lock --requirements > requirements.txt
     $ pip install
 
 ### Copy config.py
+pm2-dashboard는 config.py에 등록된 pm2 web url로 데이터를 요청합니다. config.py를 복사하여 모니터링을 하고 싶은 pm2의 pm2 web url을 넣어줍니다.
 
     $ cp config.py.original config.py
     # Insert pm2 web urls.
@@ -36,14 +38,15 @@
     $ python app.py
 
 ### Deploy server
+서버에 배포할 때는 gunicorn을 사용합니다.
 
     $ gunicorn --bind 0.0.0.0:5000 app:app --daemon --access-logfile ./logs/ficcy-api-access.log --error-logfile ./logs/ficcy-api-err.log --pid ficcy-api.pid
 
 ### Automatic deployment
+배포 스크립트는 아래와 같이 작성하여 사용합니다.
 
     $ sh deploy_api.sh
 
-    #!/bin/bash
     #!/bin/bash
     git pull --all
     cd api
@@ -55,7 +58,7 @@
 
 ---
 
-# Deploy ficcy-dashboard frontend
+# Deploy frontend
 
 ### Requirements
 
