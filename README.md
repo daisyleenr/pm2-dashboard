@@ -37,7 +37,7 @@ pm2는 `pm2 web`이라는 명령을 입력하면 9615 port로 pm2의 정보를 �
     │ pm2-http-interface │ 1  │ fork │ online │ 0 │ 0%  │ 18.2 MB   │
     └────────────────────┴────┴──────┴────────┴───┴─────┴───────────┘
 
-pm2-http-interface를 띄운 후 해당 IP와 Port를 config.py에 넣어줍니다. url은 여러개 등록할 수 있습니다.
+pm2-http-interface를 띄운 후 해당 IP와 Port를 config.py에 넣어줍니다. url은 여러개 등록할 수 있습니다. 외부 서버의 pm2를 모니터링 할 때에는 해당 port로 접근할 수 있는지 확인해주세요.
 
     $ cp config.py.original config.py
     # Insert pm2 web urls.
