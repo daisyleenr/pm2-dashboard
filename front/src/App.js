@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import MainMenu from "./components/main/MainMenu";
 import ProcessPage from "./pages/ProcessPage";
-import SamplePage from "./pages/SamplePage";
 import { ResetCSS } from "./lib/styles/reset";
 import { BaseCSS } from "./lib/styles/base";
 
+const BASE_URL = process.env.REACT_APP_BASE_PATH;
 class App extends Component {
   render() {
     return (
@@ -15,9 +15,11 @@ class App extends Component {
 
         <MainMenu />
         <Switch>
-          <Route path="/" exact={true} component={ProcessPage} />
-          <Route path="/monitoring/process" component={ProcessPage} />
-          <Route path="/sample" component={SamplePage} />
+          <Route path={BASE_URL} exact={true} component={ProcessPage} />
+          <Route
+            path={`${BASE_URL}monitoring/process`}
+            component={ProcessPage}
+          />
           <Route
             render={({ location }) => (
               <div>

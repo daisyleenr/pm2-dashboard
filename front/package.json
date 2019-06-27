@@ -1,5 +1,6 @@
 {
-  "name": "ficcy-dashboard",
+  "name": "pm2-dashboard",
+  "homepage": "https://toy.daisyleenr.dev/pm2-dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
