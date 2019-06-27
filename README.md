@@ -27,8 +27,17 @@ pipenv를 사용하지 않는 경우에는 requirements를 생성한 후 pip ins
     $ pipenv lock --requirements > requirements.txt
     $ pip install
 
-### Copy config.py
-pm2-dashboard는 config.py에 등록된 pm2 web url로 데이터를 요청합니다. config.py를 복사하여 모니터링을 하고 싶은 pm2의 pm2 web url을 넣어줍니다.
+### Set up config.py
+pm2는 `pm2 web`이라는 명령을 입력하면 9615 port로 pm2의 정보를 제공하는 pm2-http-interface 프로세스를 띄웁니다.
+
+    $ pm2 web
+    ┌────────────────────┬────┬──────┬────────┬───┬─────┬───────────┐
+    │ Name               │ id │ mode │ status │ ↺ │ cpu │ memory    │
+    ├────────────────────┼────┼──────┼────────┼───┼─────┼───────────┤
+    │ pm2-http-interface │ 1  │ fork │ online │ 0 │ 0%  │ 18.2 MB   │
+    └────────────────────┴────┴──────┴────────┴───┴─────┴───────────┘
+
+pm2-http-interface를 띄운 후 해당 IP와 Port를 config.py에 넣어줍니다. url은 여러개 등록할 수 있습니다.
 
     $ cp config.py.original config.py
     # Insert pm2 web urls.
