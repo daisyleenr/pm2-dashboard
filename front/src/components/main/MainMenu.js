@@ -47,9 +47,6 @@ const MainMenu = () => {
         <li>
           <Link to="/monitoring/process">Process</Link>
         </li>
-        <li>
-          <Link to="/sample">Sample</Link>
-        </li>
       </ul>
     </NavBar>
   );
