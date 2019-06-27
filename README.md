@@ -19,13 +19,7 @@
 
 ### Install packages
 
-    $ pipenv install
-
-### Install packages without pipenv
-pipenv를 사용하지 않는 경우에는 requirements를 생성한 후 pip install을 합니다
-
-    $ pipenv lock --requirements > requirements.txt
-    $ pip install
+    $ pip install -r requirements.txt
 
 ### Set up config.py
 pm2는 `pm2 web`이라는 명령을 입력하면 9615 port로 pm2의 정보를 제공하는 pm2-http-interface 프로세스를 띄웁니다.
